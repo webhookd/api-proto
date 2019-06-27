@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package webhookd;
+
+option go_package = "github.com/webhookd/api-proto-go";
+option java_multiple_files = true;
+option java_outer_classname = "WebhookdApiProto";
+option java_package = "com.webhookd";
+
+service WebhookdApi {
+  rpc SubscriptionCreate (SubscriptionCreateRequest) returns (SubscriptionInvite);
+  rpc SubscriptionInvite (SubscriptionInviteRequest) returns (SubscriptionInvite);
+  rpc SubscriptionAccept (SubscriptionAcceptRequest) returns (SubscriptionAcceptResponse);
+  rpc Transmit (TransmitRequest) returns (TransmitResponse);
+}
+
+message SubscriptionCreateRequest {
+  Provider provider = 1;
+  string key = 2;
+}
+
+message SubscriptionInviteRequest {
+  Subscription subscription = 1;
+  string name = 2;
+}
+
+message SubscriptionInvite {
+  Subscription subscription = 1;
+  string name = 2;
+  string token = 3;
+  string accept_url = 4;
+}
+
+message SubscriptionAcceptRequest {
+  Consumer consumer = 1;
+  Subscription subscription = 2;
+  string token = 3;
+}
+
+message SubscriptionAcceptResponse {
+  bool received = 1;
+}
+
+message TransmitRequest {
+  Provider provider = 1;
+  Subscription subscription = 2;
+  Message message = 3;
+}
+
+message TransmitResponse {
+  bool received = 1;
+  Message message = 2;
+}
+
+enum HttpMethod {
+  UNKNOWN = 0;
+  GET = 1;
+  HEAD = 2;
+  POST = 3;
+  PUT = 4;
+  DELETE = 5;
+  CONNECT = 6;
+  OPTIONS = 7;
+  TRACE = 8;
+}
+
+message Message {
+  string id = 1;
+  HttpMethod method = 2;
+  string body = 3;
+  map<string, string> query = 4;
+  map<string, string> headers = 5;
+}
+
+message Provider {
+  string id = 1;
+  string name = 2;
+}
+
+message Consumer {
+  string id = 1;
+  string name = 2;
+}
+
+message Subscription {
+  string id = 1;
+  string key = 2;
+}
