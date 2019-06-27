@@ -86,3 +86,11 @@ message Subscription {
   string id = 1;
   string key = 2;
 }
+
+message Destination {
+  string id = 1;
+  string url = 2;
+  int32 retry_count = 3;
+  int32 retry_interval = 4;
+  map<string, string> headers = 5;
+}
