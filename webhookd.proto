@@ -8,8 +8,8 @@ option java_outer_classname = "WebhookdApiProto";
 option java_package = "com.webhookd";
 
 service WebhookdApi {
-  rpc SubscriptionCreate (SubscriptionCreateRequest) returns (SubscriptionInvite);
-  rpc SubscriptionInvite (SubscriptionInviteRequest) returns (SubscriptionInvite);
+  rpc SubscriptionCreate (SubscriptionCreateRequest) returns (SubscriptionInviteResponse);
+  rpc SubscriptionInvite (SubscriptionInviteRequest) returns (SubscriptionInviteResponse);
   rpc SubscriptionAccept (SubscriptionAcceptRequest) returns (SubscriptionAcceptResponse);
   rpc Transmit (TransmitRequest) returns (TransmitResponse);
 }
@@ -24,7 +24,7 @@ message SubscriptionInviteRequest {
   string name = 2;
 }
 
-message SubscriptionInvite {
+message SubscriptionInviteResponse {
   Subscription subscription = 1;
   string name = 2;
   string token = 3;
