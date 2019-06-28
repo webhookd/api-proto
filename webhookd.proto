@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package webhookd;
 
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.goproto_enum_prefix_all) = false;
 option go_package = "github.com/webhookd/api-proto-go/webhookd";
 option java_multiple_files = true;
 option java_outer_classname = "WebhookdApiProto";
