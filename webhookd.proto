@@ -53,15 +53,32 @@ message TransmitResponse {
 }
 
 enum HttpMethod {
-  UNKNOWN = 0;
-  GET = 1;
-  HEAD = 2;
-  POST = 3;
-  PUT = 4;
-  DELETE = 5;
-  CONNECT = 6;
-  OPTIONS = 7;
-  TRACE = 8;
+  HTTP_METHOD_UNKNOWN = 0;
+  HTTP_METHOD_GET = 1;
+  HTTP_METHOD_HEAD = 2;
+  HTTP_METHOD_POST = 3;
+  HTTP_METHOD_PUT = 4;
+  HTTP_METHOD_DELETE = 5;
+  HTTP_METHOD_CONNECT = 6;
+  HTTP_METHOD_OPTIONS = 7;
+  HTTP_METHOD_TRACE = 8;
+}
+
+enum State {
+  STATE_UNKNOWN = 0;
+  STATE_ACTIVE = 1;
+  STATE_PAUSED = 2;
+  STATE_SUSPENDED = 3;
+  STATE_CANCELLED = 4;
+  STATE_DELETED = 5;
+}
+
+enum Plan {
+  PLAN_UNKNOWN = 0;
+  PLAN_TRIAL = 1;
+  PLAN_FREE = 2;
+  PLAN_PAID = 3;
+  PLAN_BESPOKE = 4;
 }
 
 message Message {
@@ -75,22 +92,29 @@ message Message {
 message Provider {
   string id = 1;
   string name = 2;
+  State state = 3;
+  Plan plan = 4;
 }
 
 message Consumer {
   string id = 1;
   string name = 2;
+  State state = 3;
+  Plan plan = 4;
 }
 
 message Subscription {
   string id = 1;
   string key = 2;
+  string name = 3;
+  State state = 4;
 }
 
 message Destination {
   string id = 1;
-  string url = 2;
-  int32 retry_count = 3;
-  int32 retry_interval = 4;
-  map<string, string> headers = 5;
+  string name = 2;
+  string url = 3;
+  int32 retry_count = 4;
+  int32 retry_interval = 5;
+  map<string, string> headers = 6;
 }
