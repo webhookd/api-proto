@@ -86,10 +86,11 @@ enum Plan {
 
 message Message {
   string id = 1;
-  HttpMethod method = 2;
-  string body = 3;
-  map<string, string> query = 4;
-  map<string, string> headers = 5;
+  string provider_reference = 2;
+  HttpMethod method = 3;
+  string body = 4;
+  map<string, string> query = 5;
+  map<string, string> headers = 6;
 }
 
 message Provider {
