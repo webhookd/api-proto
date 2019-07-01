@@ -118,7 +118,7 @@ message Destination {
   string name = 2;
   string url = 3;
   int32 retry_count = 4;
-  int32 retry_interval = 5;
+  string retry_policy = 5;
   map<string, string> headers = 6;
   State state = 7;
 }
