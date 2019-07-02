@@ -20,6 +20,7 @@ service WebhookdApi {
 message SubscriptionCreateRequest {
   Provider provider = 1;
   string key = 2;
+  string name = 3;
 }
 
 message SubscriptionInviteRequest {
