@@ -53,7 +53,7 @@ message TransmitRequest {
 
 message TransmitResponse {
   bool received = 1;
-  Message message = 2;
+  string message = 2;
 }
 
 enum HttpMethod {
